@@ -30,7 +30,7 @@ def get_data(user_city):
     base_url = "http://api.openweathermap.org/data/2.5/weather?"
     parameters = {
         "q": user_city,
-        "appid": "ec963f126d39c2f1da5f047ced732c0e"
+        "appid": ""
     }
     try:
         print("Grabbing Data...")
