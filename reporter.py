@@ -62,7 +62,7 @@ def reformat_data(dictonary):
     new_dictonary['temp'] = (dictonary.get("main", {}).get("temp"))
     new_dictonary['humidity'] = (dictonary.get("main", {}).get("humidity"))
     new_dictonary['description'] = dictonary["weather"][0]["description"]
-    print(f"In {new_dictonary['city']} CC: {new_dictonary['country code']} its {new_dictonary['temp']} Celsius at a humidity of {new_dictonary['humidity']} it is also {new_dictonary['description']}")
+    print(f"In {new_dictonary['city']} CC: {new_dictonary['country code']} its {new_dictonary['temp']} Celsius at a humidity of {new_dictonary['humidity']} it is also a {new_dictonary['description']}")
     return new_dictonary
 
 def add_csv_data(dictonary):
@@ -110,4 +110,4 @@ def read_csv_data(file):
         print("Failed to convert data")
 
 if __name__ == "__main__":
-    reformat_data(get_data(city_input))
+    add_csv_data(reformat_data(get_data(city_input())))
