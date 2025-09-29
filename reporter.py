@@ -3,6 +3,12 @@ import json
 import csv
 
 def city_input():
+    """
+    Collects a User's city name input for later use
+
+    Returns:
+        User's input as a str
+    """
     while True:
         user_city = input("What city do you want to see weather data for? ").strip().lower()
         if user_city == "":
@@ -12,6 +18,15 @@ def city_input():
             return user_city
 
 def get_data(user_city):
+    """
+    Collects data from a weather API and colects weather data
+
+    Args:
+        user_city (str): The name of a city
+
+    Returns:
+        A dictionary object full of city data
+    """
     base_url = "http://api.openweathermap.org/data/2.5/weather?"
     parameters = {
         "q": user_city,
@@ -32,6 +47,15 @@ def get_data(user_city):
     return response
 
 def reformat_data(dictonary):
+    """
+    Takes a dictonary object and turns it into a curated dictonary.
+
+    Args:
+        A dictonary of API information
+
+    Returns:
+        a dictonary with city name, temp, humidity, country code, and a short description
+    """
     new_dictonary = {}
     new_dictonary['city'] = dictonary.get("name")
     new_dictonary['country code'] = (dictonary.get("sys", {}).get("country"))
@@ -42,6 +66,12 @@ def reformat_data(dictonary):
     return new_dictonary
 
 def add_csv_data(dictonary):
+    """
+    Adds the data from a dictonary into a CSV file
+
+    Args:
+        dictonary(dict): A dictonary file full of curated information
+    """
     output_file = 'city_data.csv'
     fieldnames = ['city', 'country code', 'temp', 'humidity', 'description']
     data = [dictonary]
@@ -54,6 +84,15 @@ def add_csv_data(dictonary):
         print(f"Error writing to {output_file}")
 
 def read_csv_data(file):
+    """
+    Reads data from the city_data.csv file
+
+    Args:
+        file(csv file): A CSV file full of curated items.
+
+    Returns:
+        A formatted print statement of every city on the list and the length of the list
+    """
     count = 0
     try:
         with open(file, mode='r', newline='') as csv_file:
