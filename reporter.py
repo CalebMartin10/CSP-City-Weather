@@ -30,7 +30,8 @@ def get_data(user_city):
     base_url = "http://api.openweathermap.org/data/2.5/weather?"
     parameters = {
         "q": user_city,
-        "appid": ""
+        "appid": "",
+        "units": "metric"
     }
     try:
         print("Grabbing Data...")
@@ -62,7 +63,7 @@ def reformat_data(dictonary):
     new_dictonary['temp'] = (dictonary.get("main", {}).get("temp"))
     new_dictonary['humidity'] = (dictonary.get("main", {}).get("humidity"))
     new_dictonary['description'] = dictonary["weather"][0]["description"]
-    print(f"In {new_dictonary['city']} CC: {new_dictonary['country code']} its {new_dictonary['temp']} Celsius at a humidity of {new_dictonary['humidity']} it is also a {new_dictonary['description']}")
+    print(f"In {new_dictonary['city']} CC: {new_dictonary['country code']} its {new_dictonary['temp']} Celsius at a humidity of {new_dictonary['humidity']} a good description of the weather is {new_dictonary['description']}")
     return new_dictonary
 
 def add_csv_data(dictonary):
